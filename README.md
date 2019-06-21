@@ -1,9 +1,10 @@
 # python-rle
 Convert a PNG file into a human-readable RLE format by using Python 3 and Pillow.
 
-<h3>If you don't have Pillow installed</h3>
-Run the following command from the command prompt:
-<pre>pip install pillow</pre>
+TO RUN:
+
+python png_to_rle.py <inputfilepath> <outputfilepath>
+
 
 <h3>What is RLE</h3>
 According to Wikipedia, RLE stands for "Run-length encoding (RLE)". <br/><br/>

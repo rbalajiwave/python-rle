@@ -169,19 +169,32 @@ class RLEBitmap:
         for v in pixels:
             stream.write('%i: %i\n' % (v))
         stream.write('\n')
-        
-    
-#some tests
-#open up a PNG and write it to a RLE document
-rb = RLEBitmap()
-rb.open_png('input\golfcourse.png')
-fs = open('output\golfcourse.rle','w')
-rb.write_rle_tostream(fs)
-fs.close()
 
-#open up that same RLE file and write it out to PNG
-rb = RLEBitmap()
-fs = open('output\golfcourse.rle','r')
-rb.read_rle_fromstream(fs)
-fs.close()
-rb.write_memory_tofile('output\golfcourse_output.png')
+
+
+def main():
+    bitmap = RLEBitmap()
+    inputPath = sys.argv[1]
+    outputPath = sys.argv[2]
+    sys.path.append(inputPath)
+    sys.path.append(outputPath)
+
+
+    for filename in os.listdir(inputPath):
+            curFile = inputPath + '/' + filename
+            rb = RLEBitmap()
+            rb.open_png(curFile)
+            fs = open(outputPath + '/' + filename + '.rle','w')
+            rb.write_rle_tostream(fs)
+            fs.close()
+
+    #open up that same RLE file and write it out to PNG
+    rb = RLEBitmap()
+    fs = open('ff3da814-c3463a43_train_color.png.rle','r')
+    rb.read_rle_fromstream(fs)
+    fs.close()
+    rb.write_memory_tofile('output\golfcourse_output.png')
+
+
+if __name__ == '__main__':
+    main()
