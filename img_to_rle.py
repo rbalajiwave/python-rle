@@ -13,7 +13,7 @@ class RLEBitmap:
         self.pixels = None
         self.height = 0
         self.width = 0
-    def open_png(self, filename):
+    def open_img(self, filename):
         #open up the image
         self.image = Image.open(filename)
         #get the pixel data
