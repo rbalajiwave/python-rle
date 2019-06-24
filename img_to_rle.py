@@ -14,7 +14,6 @@ class RLEBitmap:
         self.height = 0
         self.width = 0
     
-    def open_png(self, filename):
         #open up the image
         self.image = Image.open(filename)
         #get the pixel data
@@ -182,9 +181,10 @@ def main():
 
     for filename in os.listdir(inputPath):
             curFile = inputPath + '/' + filename
+	    print curFile
             rb = RLEBitmap()
-            rb.open_png(curFile)
-            fs = open(outputPath + '/' + filename + '.rle','w')
+            rb.open_img(curFile)
+            fs = open(outputPath + '/' + filename + '.rle','w+')
             rb.write_rle_tostream(fs)
             fs.close()
 

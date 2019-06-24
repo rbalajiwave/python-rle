@@ -49,4 +49,11 @@ Height: 384
 0: 48
 2: 63
 
-
+... truncated for brevity
+</pre>
+<h3>Included commands</h3>
+<b>open_png(filename):</b> Open up a PNG file by file path, and read it into memory<br/>
+<b>get_color_atpoint(point):</b> Get a tuple with RGB values at a given point in an image, by passing in a tuple with X,Y coordinates<br/>
+<b>read_rle_fromstream(stream):</b> Read in RLE information from a file, by passing in a file stream <br/>
+<b>write_memory_tofile(filename):</b> Write out the image in memory as a binary file <br/>
+<b>write_rle_tostream(filename):</b> Write out RLE information to a file, by passing in a file stream<br/>
