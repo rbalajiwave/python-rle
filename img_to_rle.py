@@ -153,23 +153,28 @@ class RLEBitmap:
         #write everything out to the filestream
         #basic information
         stream.write('#Image Dimensions\n')
-        stream.write('Width: %i \n' % (self.width))
-        stream.write('Height: %i \n' % (self.height))
+        stream.write("Width: " + str(self.width) + "\n")
+        stream.write("Height: " + str(self.height) + "\n")
         stream.write('\n')
         
         #palette
         stream.write('#Image Palette\n')
         for v in colors.keys():
-            stream.write('%i, %i, %i\n' % (v))
+            stream.write(str(v[0]) + ", " + str(v[1]) + ", " + str(v[2]) + "\n")
         stream.write('\n')
         
         #actual pixel count
         stream.write('#Pixel Count\n')
         for v in pixels:
-            stream.write('%i: %i\n' % (v))
+            stream.write(str(v[0]) + ": " + str(v[1]) + '\n')
         stream.write('\n')
 
-
+    def rle_to_image(self, rleFilename):
+        rb = RLEBitmap()
+        fs = open('rleFilename','r')
+        rb.read_rle_fromstream(fs)
+        fs.close()
+        rb.write_memory_tofile('output.png')
 
 def main():
     bitmap = RLEBitmap()
@@ -181,19 +186,17 @@ def main():
 
     for filename in os.listdir(inputPath):
             curFile = inputPath + '/' + filename
-	    print curFile
             rb = RLEBitmap()
             rb.open_img(curFile)
-            fs = open(outputPath + '/' + filename + '.rle','w+')
+            fs = open(outputPath + '/' + filename.split('.')[0] + '.rle','w+')
             rb.write_rle_tostream(fs)
             fs.close()
-
     #open up that same RLE file and write it out to PNG
-#    rb = RLEBitmap()
-#    fs = open('ff3da814-c3463a43_train_color.png.rle','r')
-#    rb.read_rle_fromstream(fs)
-#    fs.close()
-#    rb.write_memory_tofile('output\golfcourse_output.png')
+    rb = RLEBitmap()
+    fs = open('rle/ff3d3536-04986e25_train_color.rle','r')
+    rb.read_rle_fromstream(fs)
+    fs.close()
+    rb.write_memory_tofile('output\golfcourse_output.png')
 
 
 if __name__ == '__main__':
